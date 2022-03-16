@@ -25,7 +25,7 @@
             <div class="col-2">
 
             </div>
-            <div class="col-8">
+            <div class="col-8" id="partida" >
                 <?php
                 include('misfunciones.php');
                 $mysqli = conectaBBDD();
@@ -36,7 +36,9 @@
                 for ($i = 0; $i < $num_filas; $i++) {
                     $r = $consulta->fetch_array();
                     // echo $r['tema'] . '';
-                    echo '<br>' . '<button type="button" class="btn btn-info col-12">' . $r['tema'] . '</button>' . '<br>';
+                    ?>
+                    <button onclick="cargaTema('<?php echo $r['tema'] ?> ')" type="button" class="btn btn-info col-12"> <?php echo $r['tema'] ?> </button><br><br>
+                    <?php
                 }
 
 
@@ -48,6 +50,13 @@
         </div>
     </div>
 
+    <script src="js/jquery-3.6.0.min.js"></script>
+
+    <script>
+        function cargaTema(_tema){
+            $('#partida').load('partida.php', {tema: _tema});
+        }
+    </script>
 
 
 
